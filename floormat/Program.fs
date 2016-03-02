@@ -14,6 +14,7 @@ type intptr = System.IntPtr
 type bitmap_data = System.Drawing.Imaging.BitmapData
 type dir = System.IO.Directory
 
+//[<EntryPoint>]
 let convert argv = 
     let num = 4
     use dat_file = new DatFile(@"C:\Users\Administrator\dev\floormat\arcanum-data\arcanum" + num.ToString() + ".dat")
@@ -41,7 +42,8 @@ let convert argv =
                         let dir = dir + "-r" + rotation.ToString() + "-p" + palette.ToString()
                         System.IO.Directory.CreateDirectory(dir) |> ignore
                         let filename = dir + "/" + frame_idx.ToString() +  ".bmp"
-                        bm.Save(filename)
+                        ()
+                        //bm.Save(filename)
 
     for kv in dat_file.files do process_image kv
 

@@ -3,6 +3,7 @@
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
 open Microsoft.Xna.Framework.Input
+open Microsoft.Xna.Framework.Content
 
 type game() as this =
     inherit Game()
@@ -20,7 +21,9 @@ type game() as this =
         base.Initialize()
 
     override this.LoadContent() =
-        this.Content.RootDirectory <- "Content"
+        this.Content <- new ResourceContentManager(this.Services, mg_content.Content.resource_content.ResourceManager)
+        //this.Content.RootDirectory <- "Content"
+        let foo = this.Content.Load<Effect>("floor")
         sb <- new SpriteBatch(this.GraphicsDevice)
 
     override this.UnloadContent() =

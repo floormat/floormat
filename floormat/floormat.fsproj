@@ -67,6 +67,7 @@
     <None Include="App.config" />
     <Compile Include="dat_file.fs" />
     <Compile Include="art_file.fs" />
+    <Compile Include="tiles.fs" />
     <Compile Include="Program.fs" />
     <Compile Include="game.fs" />
   </ItemGroup>
@@ -93,6 +94,13 @@
       <HintPath>..\packages\Zlib.Portable.1.11.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mg_content\mg_content.csproj">
+      <Name>mg_content</Name>
+      <Project>{3fe2f454-048f-4f95-8312-247b4d326da8}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>

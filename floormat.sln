@@ -5,19 +5,16 @@ VisualStudioVersion = 14.0.25008.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "floormat", "floormat\floormat.fsproj", "{91090C97-53FE-405E-B911-C3A6CA09E599}"
 	ProjectSection(ProjectDependencies) = postProject
-		{D88E197A-F0B0-4A70-88BF-7E23512C6D55} = {D88E197A-F0B0-4A70-88BF-7E23512C6D55}
+		{3FE2F454-048F-4F95-8312-247B4D326DA8} = {3FE2F454-048F-4F95-8312-247B4D326DA8}
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "content", "content\content.csproj", "{D88E197A-F0B0-4A70-88BF-7E23512C6D55}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xna_content", "xna_content\xna_content.contentproj", "{7403F581-5BD9-452B-991A-D8EA3C366616}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{71B83543-342B-474F-9F0E-F225EC04B8C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mg_content", "mg_content\mg_content.csproj", "{3FE2F454-048F-4F95-8312-247B4D326DA8}"
+EndProject
 Global
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
@@ -33,16 +30,18 @@ Global
 		{91090C97-53FE-405E-B911-C3A6CA09E599}.Release|Any CPU.Build.0 = Release|Any CPU
 		{91090C97-53FE-405E-B911-C3A6CA09E599}.Release|x86.ActiveCfg = Release|Any CPU
 		{91090C97-53FE-405E-B911-C3A6CA09E599}.Release|x86.Build.0 = Release|Any CPU
-		{D88E197A-F0B0-4A70-88BF-7E23512C6D55}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{D88E197A-F0B0-4A70-88BF-7E23512C6D55}.Debug|x86.ActiveCfg = Debug|x86
-		{D88E197A-F0B0-4A70-88BF-7E23512C6D55}.Debug|x86.Build.0 = Debug|x86
-		{D88E197A-F0B0-4A70-88BF-7E23512C6D55}.Release|Any CPU.ActiveCfg = Release|x86
-		{D88E197A-F0B0-4A70-88BF-7E23512C6D55}.Release|x86.ActiveCfg = Release|x86
-		{D88E197A-F0B0-4A70-88BF-7E23512C6D55}.Release|x86.Build.0 = Release|x86
 		{7403F581-5BD9-452B-991A-D8EA3C366616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7403F581-5BD9-452B-991A-D8EA3C366616}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{7403F581-5BD9-452B-991A-D8EA3C366616}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{7403F581-5BD9-452B-991A-D8EA3C366616}.Release|x86.ActiveCfg = Debug|Any CPU
+		{3FE2F454-048F-4F95-8312-247B4D326DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FE2F454-048F-4F95-8312-247B4D326DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FE2F454-048F-4F95-8312-247B4D326DA8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3FE2F454-048F-4F95-8312-247B4D326DA8}.Debug|x86.Build.0 = Debug|Any CPU
+		{3FE2F454-048F-4F95-8312-247B4D326DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FE2F454-048F-4F95-8312-247B4D326DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FE2F454-048F-4F95-8312-247B4D326DA8}.Release|x86.ActiveCfg = Release|x86
+		{3FE2F454-048F-4F95-8312-247B4D326DA8}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
