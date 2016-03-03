@@ -110,3 +110,15 @@ are great. See <http://fabiensanglard.net/> for reviews of johnc's code.
 It'd be necessary to implement UDP channels with different semantics - lossy/lossless/last etc.
 
 --
+
+Since Arcanum tilesets have only three elevation types (ground, impassable mountain, water), consider applicable
+methods for terrain generation.
+
+Mountains can possibly be made with random walk, using a variation of this idea <http://programmersbraindump.blogspot.mx/2012/07/random-walk-map-generation.html>
+Prevent anomalies as they can arise from any non-deterministic methods. Mountains too large, occupying only
+a single tile etc.
+
+Have rivers get emitted from mountains, using perlin worms biased by a hidden elevation value etc.
+Hidden elevation value is needed for lakes, etc.
+
+--
