@@ -71,6 +71,7 @@
     <Compile Include="tiles.fs" />
     <Compile Include="Program.fs" />
     <Compile Include="game.fs" />
+    <Content Include="DESIGN-NOTES.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
