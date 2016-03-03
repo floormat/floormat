@@ -54,6 +54,9 @@ In case of blockage by another unit while pathfinding, note the time amount the 
 go around if that time is small. Maybe initialize own standing-still time to the same value as the blocking unit's.
 When multiple units form a chokepoint, this should allow them to wait rather than take paths around buildings, etc.
 
+Allow passing through units standing in a doorway etc. for a long time, as long as the end position isn't occupied by another unit.
+In case it suddenly becomes, unit must move randomly somewhere else though.
+
 --
 
 Perlin worms seem to work great for natural caves.
