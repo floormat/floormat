@@ -94,3 +94,11 @@ Consider serialization choices, either .NET binary serializer or homebrew stuff 
 Due to object id's we don't have cycles by design so builtin stuff should work without much problem.
 
 --
+
+John Carmack's scheme of making player actions encapsulated as if happened over a network even on a
+non-networked instance can bring multiplayer with low cost. Also his ideas of using delta compression et al.
+are great. See <http://fabiensanglard.net/> for reviews of johnc's code.
+
+It'd be necessary to implement UDP channels with different semantics - lossy/lossless/last etc.
+
+--
