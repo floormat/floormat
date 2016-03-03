@@ -42,6 +42,11 @@ See how biome descriptions relate to Arcanum tilesets.
 
 --
 
+Consult @amitp's guide on noise types and his methods <http://www.redblobgames.com/articles/noise/introduction.html> as
+an alternative to perlin, where applicable.
+
+--
+
 Avoid unit pathfinding with no player in sight. Generate n^2 paths between objects of interest and lerp NPC positions from them.
 For actual pathfinding use JPS <https://github.com/juhgiyo/EpPathFinding.cs> or A*.
 
