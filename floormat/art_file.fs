@@ -1,4 +1,4 @@
-﻿module art_file
+module art_file
 
 module detail =
     open dat_file

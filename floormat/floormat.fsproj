@@ -29,7 +29,8 @@
     <Prefer32Bit>false</Prefer32Bit>
     <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <OtherFlags>--mlcompatibility</OtherFlags>
+    <OtherFlags>--mlcompatibility --warnon:1182</OtherFlags>
+    <NoWarn>0386</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

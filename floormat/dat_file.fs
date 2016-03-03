@@ -1,4 +1,4 @@
-﻿module dat_file
+module dat_file
 
 type System.IO.Stream with
     member inline public this.read_byte() = byte (this.ReadByte() &&& 0xff)
@@ -65,7 +65,7 @@ module detail =
                 stream.read_byte() |> ignore
             let magic = stream.read_le_int32()
             if magic <> DAT_MAGIC then raise (InvalidDataException())
-            let pool_size = stream.read_le_int32()
+            let _ = stream.read_le_int32() // filename list size in bytes
             let dict_size = stream.read_le_int32()
             stream.Seek(int64 (-dict_size), SeekOrigin.End) |> ignore
             let entry_count = stream.read_le_int32()
@@ -76,7 +76,7 @@ module detail =
                 for j in 0..filename_len - 1 do
                     filename.[j] <- stream.read_byte() |> char
                 stream.read_byte() |> ignore
-                let unused_ptr = stream.read_le_uint32()
+                let _ = stream.read_le_uint32() // raw unusable pointer from original struct
                 let flags = stream.read_le_int32() |> uint32
                 let old_size = stream.read_le_int32()
                 let new_size = stream.read_le_int32()

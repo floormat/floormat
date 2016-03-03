@@ -1,4 +1,4 @@
-﻿namespace floormat.AssemblyInfo
+namespace floormat.AssemblyInfo
 
 open System.Reflection
 open System.Runtime.CompilerServices

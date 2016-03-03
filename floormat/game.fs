@@ -1,4 +1,4 @@
-﻿module game
+module game
 
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
@@ -23,7 +23,7 @@ type game() as this =
     override this.LoadContent() =
         this.Content <- new ResourceContentManager(this.Services, mg_content.Content.resource_content.ResourceManager)
         //this.Content.RootDirectory <- "Content"
-        let foo = this.Content.Load<Effect>("floor")
+        //let foo = this.Content.Load<Effect>("floor")
         sb <- new SpriteBatch(this.GraphicsDevice)
 
     override this.UnloadContent() =
@@ -38,7 +38,7 @@ type game() as this =
 
 [<EntryPoint>]
 [<System.STAThread>]
-let main argv =
+let main _ =
     use g = new game()
     g.Run() |> ignore
     0

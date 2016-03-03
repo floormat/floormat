@@ -1,4 +1,4 @@
-﻿module converter
+module converter
 
 open dat_file
 open art_file
@@ -15,7 +15,7 @@ type bitmap_data = System.Drawing.Imaging.BitmapData
 type dir = System.IO.Directory
 
 //[<EntryPoint>]
-let convert argv = 
+let convert _ = 
     let num = 4
     use dat_file = new DatFile(@"C:\Users\Administrator\dev\floormat\arcanum-data\arcanum" + num.ToString() + ".dat")
     let dir = @"e:\arcanum-img" + num.ToString()
@@ -43,7 +43,7 @@ let convert argv =
                         System.IO.Directory.CreateDirectory(dir) |> ignore
                         let filename = dir + "/" + frame_idx.ToString() +  ".bmp"
                         ()
-                        //bm.Save(filename)
+                        bm.Save(filename)
 
     for kv in dat_file.files do process_image kv
 
