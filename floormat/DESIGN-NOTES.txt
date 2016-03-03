@@ -24,6 +24,13 @@ Whole block images should be cached on a LRU basis from rendertarget.
 
 --
 
+Biomes won't look natural if they end directly on block boundary so add a random skew on each
+row or column the biome change occurs. The tileset edges are all described in the art/tile .mes file.
+Each transition has the same structure wrt which side connects to what. Don't forget about the ability to
+flip tiles horizontally or vertically.
+
+--
+
 Biomes need to be chosen on a per-block basis, definitely composed of more than a single block.
 
 Note Dwarf Fortress' biome scheme <http://gamedev.stackexchange.com/questions/31241/random-map-generation?lq=1>
@@ -50,7 +57,7 @@ Perlin worms seem to work great for natural caves.
 
 Consider .NET Task system for larger computations, but watch task granularity and locking demands.
 
-Also delimited continuations (see F# constexpr) may be better than state machines in some cases. But that heap-allocates over time.
+Also delimited continuations (see F# compexpr) may be better than state machines in some cases. But that heap-allocates over time.
 
 --
 
@@ -68,6 +75,9 @@ layout in .NET requires computing the index, e.g. `y * width + x` typical for bi
 --
 
 Meanshift is probably good for animal herding behavior simulation.
+
+It's possibly also good for finding crossroads of trade routes.
+@amitp posted this idea at <http://theory.stanford.edu/~amitp/GameProgramming/Applications.html>
 
 --
 
