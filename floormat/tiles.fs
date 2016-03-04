@@ -35,10 +35,9 @@ type roof_id = int16<roof_u>
 
 // blocks with sparse data
 [<Literal>]
-let BLOCK_SIZE = 64
+let BLOCK_SIZE = 80
 
 module detail =
-
     type slist<'a, 'b> = System.Collections.Generic.SortedList<'a, 'b>
     type smap<'a, 'b> = System.Collections.Generic.SortedDictionary<'a, 'b>
 
@@ -79,6 +78,7 @@ module detail =
                     |> int
             interface System.IEquatable<tile_xy> with
                 member this.Equals(other) = this.X = other.X && this.Y = other.Y
+            // TODO add accessors for tile contents
         end
 
 // NOTE use jagged arrays for block array in worldspace class
