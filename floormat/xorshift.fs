@@ -17,7 +17,7 @@ type prng_state(s0_ : uint64, s1_ : uint64) =
             let rnd = seeder.Value
             let s0 = uint64(rnd.Next()) <<< 32 ||| uint64(rnd.Next())
             let s1 = uint64(rnd.Next()) <<< 32 ||| uint64(rnd.Next())
-            prng(prng_state(s0, s1))
+            prng(prng_state(max 1UL s0, max 1UL s1))
     end
 
 and prng private(s0 : uint64, s1 : uint64, value : uint64) =
@@ -41,6 +41,7 @@ and prng private(s0 : uint64, s1 : uint64, value : uint64) =
         member this.to_double = (this.to_uint64 |> float) * detail.DIV64 - 1.
         member this.to_float = (this.to_uint64 |> float32) * detail.DIV32 - 1.f
         member this.to_int(max) = int(this.to_uint64 &&& uint64(System.Int32.MaxValue)) % max
+        // TODO gaussian
 #if false
         interface System.Collections.Generic.IEnumerable<uint64> with
             member this.GetEnumerator() =

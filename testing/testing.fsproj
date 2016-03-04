@@ -5,15 +5,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>91090c97-53fe-405e-b911-c3a6ca09e599</ProjectGuid>
+    <ProjectGuid>dcca571c-da49-426c-a16d-837b4aa5eacd</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>floormat</RootNamespace>
-    <AssemblyName>floormat</AssemblyName>
+    <RootNamespace>testing</RootNamespace>
+    <AssemblyName>testing</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
-    <Name>floormat</Name>
-    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <Name>testing</Name>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -22,15 +21,12 @@
     <Optimize>false</Optimize>
     <Tailcalls>false</Tailcalls>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <WarningLevel>5</WarningLevel>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>3</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>bin\Debug\floormat.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\testing.XML</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
-    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
     <OtherFlags>--mlcompatibility --warnon:1182</OtherFlags>
-    <NoWarn>0386</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,13 +34,10 @@
     <Tailcalls>true</Tailcalls>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <WarningLevel>5</WarningLevel>
+    <WarningLevel>3</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>bin\Release\floormat.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\testing.XML</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
-    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <OtherFlags>--mlcompatibility</OtherFlags>
   </PropertyGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
@@ -64,50 +57,40 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Content Include="packages.config" />
-    <None Include="App.config" />
-    <Compile Include="xorshift.fs" />
-    <Compile Include="dat_file.fs" />
-    <Compile Include="art_file.fs" />
-    <Compile Include="tiles.fs" />
     <Compile Include="Program.fs" />
-    <Compile Include="game.fs" />
-    <Content Include="DESIGN-NOTES.txt" />
+    <None Include="App.config" />
+    <Content Include="packages.config" />
+    <None Include="prng.fsx" />
+    <None Include="charting.fsx" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="FSharp.Charting">
+      <HintPath>..\packages\FSharp.Charting.0.90.13\lib\net40\FSharp.Charting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\packages\MonoGame.Framework.WindowsGL.3.4.0.459\lib\net40\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Framework.Portable.3.2.99.1-Beta\lib\portable-net45+win+wpa81+Xamarin.iOS10+MonoAndroid10+MonoTouch10\MonoGame.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MonoGame.Framework.Content.Pipeline">
+      <HintPath>..\packages\MonoGame.Framework.Content.Pipeline.Portable.3.2.99.1-Beta\lib\portable-net45+win+wpa81+Xamarin.iOS10+MonoAndroid10+MonoTouch10\MonoGame.Framework.Content.Pipeline.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="OpenTK">
-      <HintPath>..\packages\MonoGame.Framework.WindowsGL.3.4.0.459\lib\net40\OpenTK.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Security" />
-    <Reference Include="Zlib.Portable">
-      <HintPath>..\packages\Zlib.Portable.1.11.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\mg_content\mg_content.csproj">
-      <Name>mg_content</Name>
-      <Project>{3fe2f454-048f-4f95-8312-247b4d326da8}</Project>
+    <ProjectReference Include="..\floormat\floormat.fsproj">
+      <Name>floormat</Name>
+      <Project>{91090c97-53fe-405e-b911-c3a6ca09e599}</Project>
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

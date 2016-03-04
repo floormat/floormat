@@ -1,8 +1,4 @@
 /.vs/floormat/v14/.suo
 *.userprefs
-/floormat/obj/
-/floormat/bin/
-/xna_content/bin/
-/xna_content/obj/
-/mg_content/obj/
-/mg_content/bin/
+/*/obj/
+/*/bin/

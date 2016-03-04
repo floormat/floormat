@@ -34,6 +34,7 @@ flip tiles horizontally or vertically.
 Biomes need to be chosen on a per-block basis, definitely composed of more than a single block.
 
 Note Dwarf Fortress' biome scheme <http://gamedev.stackexchange.com/questions/31241/random-map-generation?lq=1>
+Original Whittaker biome diagram <http://w3.marietta.edu/~biol/biomes/biome_main.htm>
 
 Also note temperature dependent on longitude from an actual scientific model <https://en.wikipedia.org/wiki/K%C3%B6ppen_climate_classification>
 Rainfall patterns are more of an "ordered noise" thing.
