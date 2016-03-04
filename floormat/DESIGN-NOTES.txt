@@ -62,6 +62,7 @@ In case it suddenly becomes, unit must move randomly somewhere else though.
 Perlin worms seem to work great for natural caves.
 Convolve with cellular automaton to make larger rooms, e.g. sum the amount of empty space in a nxn grid and create
 more empty space upon passing some threshold.
+See <http://www.roguebasin.com/index.php?title=Cellular_Automata_Method_for_Generating_Random_Cave-Like_Levels>
 
 BSP generates great layouts we can use it for some purpose. <http://www.roguebasin.com/index.php?title=Basic_BSP_Dungeon_generation>
 
