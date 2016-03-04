@@ -130,3 +130,13 @@ Hidden elevation value is needed for lakes, etc.
 
 Arcanum has no children models at all. Need to resize models changing aspect ratio.
 See <http://design.tutsplus.com/articles/human-anatomy-fundamentals-advanced-body-proportions--vector-19869>
+
+This isn't perfect due to skewed body proportions but will have to do in the prototype due to lack of
+original graphics content. Toddlers can be probably represented by a shrinked person in underwear,
+again with changed aspect ratio.
+
+--
+
+PCG wiki has information on tons of relevant subjects. See <http://pcg.wikidot.com/category-pcg-algorithms>
+
+--
