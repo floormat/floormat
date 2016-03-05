@@ -14,29 +14,22 @@ module FsiAutoShow =
 //Chart.Line [ 1 .. 10 ]
 
 let hist () =
-    let range = 700
-    let sz = 2000
+    let sz = 1000
     let mid = sz / 2
+    let space = 1./4.
+    let iters = 10000000
     let r = xorshift.prng_state.new_prng()
-    let hist = Array.zeroCreate sz : uint64 []
-    let c = (float sz) / (float range)
-    for i in 0 .. 1000000 - 1 do
-        let x = r.next_normal(0.2)
-        let idx = x * (float range) |> int |> (+) mid
+    let hist = Array.zeroCreate sz
+    for i in 0 .. iters - 1 do
+        let x = r.next_normal(1.)
+        let idx = round(x * (float mid) * space) |> int |> (+) mid
         if idx >= 0 && idx < hist.Length then
-            hist.[idx] <- hist.[idx] + 1UL
-    let div = float(Array.sum hist)
-#if !INTERACTIVE
-    for i in 0 .. hist.Length - 1 do
-        if hist.[i] > 0UL then
-            let x = float(i - mid) / (float sz)
-            printfn "%f %f" x (float(hist.[i]) / div * 100.)
-#else
+            hist.[idx] <- hist.[idx] + 1
+    let sum = Array.sum hist |> float
     let data = [
         for i in 0 .. sz - 1 ->
-            let x = float(i - mid) * c / (float sz)
-            x, float(hist.[i]) / div
+            let x = float(i - mid)
+            x, float(hist.[i]) / sum
     ]
-    Chart.Point data
-#endif
+    Chart.Line data
 hist ()
