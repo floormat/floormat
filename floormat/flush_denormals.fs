@@ -37,5 +37,4 @@ module detail =
 let inline enable_fast_math () = if not detail.is_unix then detail.enable_fast_math ()
 let inline disable_fast_math () = if not detail.is_unix then detail.disable_fast_math ()
 let inline set_fast_math flag =
-    if not detail.is_unix then
-        if flag then enable_fast_math() else disable_fast_math()
+    if flag then enable_fast_math() else disable_fast_math()
