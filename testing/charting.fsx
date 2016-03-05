@@ -1,17 +1,13 @@
-#I "bin/Debug"
-#r "floormat.exe"
+#r "bin/Debug/floormat.exe"
 #r "System.Windows.Forms"
 #r "System.Windows.Forms.DataVisualization"
 #r "WindowsFormsIntegration"
-#r "FSharp.Charting.dll"
+#r "bin/Debug/FSharp.Charting.dll"
 open FSharp.Charting
 open FSharp.Charting.ChartTypes
-open xorshift
 
 module FsiAutoShow = 
    fsi.AddPrinter(fun (ch:FSharp.Charting.ChartTypes.GenericChart) -> ch.ShowChart() |> ignore; "(Chart)")
-
-//Chart.Line [ 1 .. 10 ]
 
 let hist () =
     let sz = 1000
@@ -33,3 +29,5 @@ let hist () =
     ]
     Chart.Line data
 hist ()
+
+#time "on"

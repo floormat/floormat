@@ -1,6 +1,4 @@
-#I "bin/Debug/"
-#I "C:/Users/Administrator/dev/floormat/floormat/bin/Debug/"
-#r "floormat.exe"
+#r "bin/Debug/floormat.exe"
 
 let r = xorshift.prng_state.new_prng()
 
