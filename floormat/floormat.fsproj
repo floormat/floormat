@@ -71,6 +71,7 @@
     <Compile Include="dat_file.fs" />
     <Compile Include="art_file.fs" />
     <Compile Include="tiles.fs" />
+    <Compile Include="flush_denormals.fs" />
     <Compile Include="Program.fs" />
     <Compile Include="game.fs" />
   </ItemGroup>

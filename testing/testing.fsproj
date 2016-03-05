@@ -62,6 +62,7 @@
     <Content Include="packages.config" />
     <None Include="prng.fsx" />
     <None Include="charting.fsx" />
+    <None Include="denormals.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Charting">
