@@ -11,10 +11,15 @@ let test () =
         ret <- eps * (1. - 1e-24)
         ret <- ret * (1. - 1e-24)
         ret <- ret * (1. - 1e-24)
+        ret <- ret * (1. - 1e-24)
+        ret <- ret * (1. - 1e-24)
+        ret <- ret * (1. - 1e-24)
     ret
 
 #time "on"
 
-// sample results in debug mode on core i7
-// denormals enabled: CPU: 00:00:09.468
-// denormals disabled: CPU: 00:00:00.218
+// sample results
+
+// release mode on core i7
+// denormals enabled:  00:00:18.937
+// denormals disabled: 00:00:00.546
