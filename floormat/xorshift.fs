@@ -41,4 +41,12 @@ and prng private(s0 : uint64, s1 : uint64, value : uint64) =
         member this.to_double = (this.to_uint64 |> float) * detail.DIV64 - 1.
         member this.to_float = (this.to_uint64 |> float32) * detail.DIV32 - 1.f
         member this.to_int(max) = int(this.to_uint64 &&& uint64(System.Int32.MaxValue)) % max
-        // TODO gaussian
+            st <- prng_state(s0, s1)
+        member this.next_normal(dev) =
+            let mutable u, v = this.next_double(), this.next_double()
+            while u < detail.eps do
+                u <- this.next_double()
+                v <- this.next_double()
+            // throw away the second solution
+            sqrt(-2. * log(u)) * sin(2. * detail.pi * v) * dev
+        member this.next_int(max) = int(this.next_uint64() &&& detail.MAX_VALUE32) % max
