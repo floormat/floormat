@@ -1,17 +1,12 @@
-﻿module xorshift
+module xorshift
 
 #nowarn "9"
 
 module detail =
-    let MAX_VALUE = System.UInt64.MaxValue
-    let MAX_VALUE32 = uint64(System.UInt32.MaxValue)
-    let DIV64 = 1./float(MAX_VALUE)
-    let DIV32 = 1./float(MAX_VALUE32)
+    [<Literal>]
     let eps = 1e-6
+    let MAX_VALUE32 = uint64(System.UInt32.MaxValue)
     let pi = System.Math.PI
-
-// implements the algorithm from the paper:
-// Vigna, Sebastiano (April 2014). "Further scramblings of Marsaglia's xorshift generators". arXiv:1404.0390 [cs.DS]
 
 type prng_state(s0_ : uint64, s1_ : uint64) =
     struct
@@ -29,6 +24,8 @@ and prng(state__ : prng_state) =
         let mutable st = state__
         do if st.s0 = 0uL && st.s1 = 0uL then failwith "prng not seeded"
         member private this.next() =
+            // algorithm described in paper:
+            // Vigna, Sebastiano (April 2014). "Further scramblings of Marsaglia's xorshift generators". arXiv:1404.0390 [cs.DS]
             let x = st.s0
             let x = x ^^^ (x <<< 23)
             let y = st.s1
@@ -36,19 +33,21 @@ and prng(state__ : prng_state) =
             let s1 = x ^^^ y ^^^ (x >>> 17) ^^^ (y >>> 26)
             st <- prng_state(s0, s1)
             s1 + y
-        // the .NET System.Random generator doesn't allow without heap-allocating
+        // the .NET System.Random generator doesn't allow without reseed heap-allocating
         // another Random instance. this implementation exists so that state
         // can be freely reseeded at runtime using stack-allocated structs.
         member this.state with get() = st and set x = st <- x
         member this.next_uint64() = this.next()
-        member this.next_double() = (this.next_uint64() |> float) * detail.DIV64
-            
+        member this.next_double() =
+            System.BitConverter.Int64BitsToDouble(0x3FFUL <<< 52 ||| (this.next_uint64() >>> 12) |> int64) - 1.
         member this.next_float() = this.next_double() |> float32
         member this.next_normal(dev) =
-            let mutable u, v = this.next_double(), this.next_double()
-            while u < detail.eps do
-                u <- this.next_double()
-                v <- this.next_double()
-            // throw away the second solution
-            sqrt(-2. * log(u)) * sin(2. * detail.pi * v) * dev
+            let mutable v1, v2 = 2. * this.next_double() - 1., 2. * this.next_double() - 1.
+            let mutable s = v1 * v1 + v2 * v2
+            while s >= 1. do
+              v1 <- 2. * this.next_double() - 1.
+              v2 <- 2. * this.next_double() - 1.
+              s <- v1 * v1 + v2 * v2;
+            let norm = sqrt(-2. * log(s) / s);
+            v1 * norm * dev
         member this.next_int(max) = int(this.next_uint64() &&& detail.MAX_VALUE32) % max
