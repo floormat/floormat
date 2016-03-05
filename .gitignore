@@ -2,3 +2,5 @@
 *.userprefs
 /*/obj/
 /*/bin/
+*.psess
+*.vspx
