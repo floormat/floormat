@@ -10,14 +10,14 @@ module detail =
 
 type prng_state(s0_ : uint64, s1_ : uint64) =
     struct
-        static let seeder = new System.Threading.ThreadLocal<_>(fun () -> System.Random(System.Guid.NewGuid().GetHashCode()))
+        static let seeder = System.Random(System.Guid.NewGuid().GetHashCode())
         member this.s0 = s0_
         member this.s1 = s1_
         static member new_prng() =
-            let rnd = seeder.Value
-            let s0 = uint64(rnd.Next()) <<< 32 ||| uint64(rnd.Next())
-            let s1 = uint64(rnd.Next()) <<< 32 ||| uint64(rnd.Next())
-            prng(prng_state(max 1UL s0, max 1UL s1))
+            (fun () -> let s0 = uint64(seeder.Next()) <<< 32 ||| uint64(seeder.Next())
+                       let s1 = uint64(seeder.Next()) <<< 32 ||| uint64(seeder.Next())
+                       prng(prng_state(max 1UL s0, s1)))
+            |> lock seeder
     end
 
 and prng private(s0 : uint64, s1 : uint64, value : uint64) =
