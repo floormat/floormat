@@ -59,6 +59,7 @@ module detail =
         let stuff = block_stuff()
         let roofs = block_roofs()
         let floors = block_floors()
+        let mutable rng_state = xorshift.prng_state()
 
     [<CustomEquality; CustomComparison>]
     type tile_xy =
