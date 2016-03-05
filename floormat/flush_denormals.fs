@@ -32,8 +32,10 @@ module detail =
         let ret = fp_control(UIntPtr.Zero, default_flags, FP_MASK)
         if ret <> 0 then failwith "failed to unset fast math"
         ()
+    let is_unix = let p = Environment.OSVersion.Platform |> int in p = 4 || p = 128
 
-let inline enable_fast_math () = detail.enable_fast_math ()
-let inline disable_fast_math () = detail.disable_fast_math ()
+let inline enable_fast_math () = if not detail.is_unix then detail.enable_fast_math ()
+let inline disable_fast_math () = if not detail.is_unix then detail.disable_fast_math ()
 let inline set_fast_math flag =
-    if flag then enable_fast_math() else disable_fast_math()
+    if not detail.is_unix then
+        if flag then enable_fast_math() else disable_fast_math()
