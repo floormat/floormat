@@ -1,9 +1,14 @@
-module xorshift
+﻿module xorshift
+
+#nowarn "9"
 
 module detail =
     let MAX_VALUE = System.UInt64.MaxValue
-    let DIV64 = 2./float(MAX_VALUE)
-    let DIV32 = 2.f/float32(MAX_VALUE)
+    let MAX_VALUE32 = uint64(System.UInt32.MaxValue)
+    let DIV64 = 1./float(MAX_VALUE)
+    let DIV32 = 1./float(MAX_VALUE32)
+    let eps = 1e-6
+    let pi = System.Math.PI
 
 // implements the algorithm from the paper:
 // Vigna, Sebastiano (April 2014). "Further scramblings of Marsaglia's xorshift generators". arXiv:1404.0390 [cs.DS]
@@ -20,28 +25,25 @@ type prng_state(s0_ : uint64, s1_ : uint64) =
             |> lock seeder
     end
 
-and prng private(s0 : uint64, s1 : uint64, value : uint64) =
-    struct
-        new(state : prng_state) =
-            let next : prng = prng.next(state.s0, state.s1)
-            prng(state.s0, state.s1, next.to_uint64)
-        member this.next() =
-            if s0 = 0uL && s1 = 0uL then
-                failwith "prng not seeded"
-            prng.next(s0, s1)
-        static member private next(s0, s1) =
-            let x = s0
+and prng(state__ : prng_state) =
+        let mutable st = state__
+        do if st.s0 = 0uL && st.s1 = 0uL then failwith "prng not seeded"
+        member private this.next() =
+            let x = st.s0
             let x = x ^^^ (x <<< 23)
-            let y = s1
+            let y = st.s1
             let s0 = y
             let s1 = x ^^^ y ^^^ (x >>> 17) ^^^ (y >>> 26)
-            prng(s0, s1, s1 + y)
-        member this.state = prng_state(s0, s1)
-        member this.to_uint64 = value
-        member this.to_double = (this.to_uint64 |> float) * detail.DIV64 - 1.
-        member this.to_float = (this.to_uint64 |> float32) * detail.DIV32 - 1.f
-        member this.to_int(max) = int(this.to_uint64 &&& uint64(System.Int32.MaxValue)) % max
             st <- prng_state(s0, s1)
+            s1 + y
+        // the .NET System.Random generator doesn't allow without heap-allocating
+        // another Random instance. this implementation exists so that state
+        // can be freely reseeded at runtime using stack-allocated structs.
+        member this.state with get() = st and set x = st <- x
+        member this.next_uint64() = this.next()
+        member this.next_double() = (this.next_uint64() |> float) * detail.DIV64
+            
+        member this.next_float() = this.next_double() |> float32
         member this.next_normal(dev) =
             let mutable u, v = this.next_double(), this.next_double()
             while u < detail.eps do
