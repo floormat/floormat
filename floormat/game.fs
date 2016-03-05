@@ -36,9 +36,12 @@ type game() as this =
         this.GraphicsDevice.Clear(Color.CornflowerBlue);
         base.Draw(tm)
 
+open flush_denormals
+
 [<EntryPoint>]
 [<System.STAThread>]
 let main _ =
+    enable_fast_math ()
     use g = new game()
     g.Run() |> ignore
     0
